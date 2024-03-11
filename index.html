@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HTML + CSS</title>
+    <style>
+      .menu {
+        padding: 0;
+        list-style: none;
+        position: relative;
+        margin: 1rem auto 0 auto;
+        width: 70%;
+        height: 0;
+        padding-top: 70%;
+      }
+      @media all and (max-width: 320px) {
+        .menu {
+          width: 230px;
+          height: 230px;
+          padding: 0;
+        }
+      }
+      @media all and (min-width: 700px) {
+        .menu {
+          width: 500px;
+          height: 500px;
+          padding: 0;
+        }
+      }
+      .menu li {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.3s ease;
+      }
+      /* .menu li:hover {
+        background-color: gold;
+      } */
+      .menu li.active {
+        transform: scale(calc(1.2 + var(--scale-add, 0)))
+          rotate(var(--rotation));
+      }
+      .one {
+        /* background-color: rgb(51, 204, 247); */
+        --rotation: 0deg;
+        transform: scale(1.2) rotate(var(--rotation));
+        clip-path: url(#sector1);
+      }
+      .inner-slice {
+        /* background-color: rgb(51, 204, 247); */
+        --rotation: 0deg;
+        transform: scale(0.2) !important ;
+        /* clip-path: url(#sector1); */
+      }
+      .two {
+        /* background-color: #1891b3; */
+        --rotation: -56deg;
+        transform: scale(1.1) rotate(var(--rotation));
+        clip-path: url(#sector2);
+      }
+      .three {
+        /* background-color: #456068; */
+        --rotation: -112deg;
+        transform: scale(0.7) rotate(var(--rotation));
+        clip-path: url(#sector3);
+      }
+      .four {
+        /* background-color: #62767c; */
+        --rotation: -175deg;
+        transform: scale(1) rotate(var(--rotation));
+        clip-path: url(#sector4);
+      }
+      .five {
+        /* background-color: #1e7a94; */
+        --rotation: -238deg;
+        transform: scale(1.4) rotate(var(--rotation));
+        clip-path: url(#sector5);
+      }
+      .six {
+        /* background-color: #119ac0; */
+        --rotation: -253deg;
+        transform: scale(1.4) rotate(var(--rotation));
+        clip-path: url(#sector6);
+      }
+      .seven {
+        /* background-color: #ff4500; */
+        --rotation: -268deg;
+        transform: scale(0.7) rotate(var(--rotation));
+        clip-path: url(#sector7);
+      }
+      .eight {
+        /* background-color: #ffa500; */
+        --rotation: -305deg;
+        transform: scale(0.8) rotate(var(--rotation));
+        clip-path: url(#sector8);
+      }
+      .currentArchivement {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        /* justify-content: center; */
+        align-items: center;
+      }
+      .placementMileStone {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        /* justify-content: center; */
+        align-items: center;
+        margin-top: -1.6rem;
+      }
+      .currentArchivementColorBox {
+        height: 20px;
+        width: 20px;
+        background-color: #1976d2;
+      }
+      .placementMileStoneColorBox {
+        height: 20px;
+        width: 20px;
+        background-color: #ffeb3b;
+      }
+      .shape-container {
+        position: relative;
+      }
+
+      .label {
+        position: absolute;
+        top: 120%; /* Adjust the distance of the label from the shape */
+        left: 50%;
+        transform: translateX(-50%);
+        /* Additional styling for the label */
+        background-color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .connector-line {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none; /* Ensures the line doesn't interfere with mouse events */
+      }
+
+      .connector {
+        stroke: black;
+        stroke-width: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="detailsBox">
+      <div class="currentArchivement">
+        <div class="currentArchivementColorBox"></div>
+        <h4>Current Archivements</h4>
+      </div>
+      <div class="placementMileStone">
+        <div class="placementMileStoneColorBox"></div>
+        <h4>Placement Milestones</h4>
+      </div>
+    </div>
+
+    <ul class="menu">
+      <li class="shape-container">
+        <svg viewBox="0 0 500 500" class="one">
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color: #ffeb3b" />
+              <stop offset="100%" style="stop-color: #ffc107" />
+            </linearGradient>
+            <linearGradient
+              id="customGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop offset="0%" style="stop-color: #1976d2" />
+              <stop offset="100%" style="stop-color: #0f3c6d" />
+            </linearGradient>
+          </defs>
+          <g id="sector1" class="slice slice-1">
+            <path
+              fill="url(#goldGradient)"
+              stroke="white"
+              stroke-width="1"
+              class="sector"
+              d="M250,250 l250,0 A250,250 0 0,0 389.7982258676867,42.74060686123957 z"
+            ></path>
+            <path
+              fill="url(#customGradient)"
+              d="M250,250 l250,0 A250,250 0 0,0 389.7982258676867,42.74060686123957 z"
+              transform="scale(1)"
+              transform-origin="250 250"
+            ></path>
+            <path
+              fill="none"
+              stroke="gray"
+              stroke-width="1"
+              d="M 350 200 L 484 122 L 767 113"
+            />
+            <text x="330" y="145" class="small">Attendance - 50%</text>
+          </g>
+        </svg>
+      </li>
+
+      <li>
+        <svg viewBox="0 0 500 500" class="two">
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color: #ffeb3b" />
+              <stop offset="100%" style="stop-color: #ffc107" />
+            </linearGradient>
+            <linearGradient
+              id="customGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop offset="0%" style="stop-color: #1976d2" />
+              <stop offset="100%" style="stop-color: #0f3c6d" />
+            </linearGradient>
+          </defs>
+          <g id="sector2" class="slice slice-1">
+            <path
+              fill="url(#goldGradient)"
+              stroke="white"
+              stroke-width="1"
+              class="sector"
+              d="M250,250 l250,0 A250,250 0 0,0 389.7982258676867,42.74060686123957 z"
+            ></path>
+            <path
+              fill="url(#customGradient)"
+              d="M250,250 l250,0 A250,250 0 0,0 389.7982258676867,42.74060686123957 z"
+              transform="scale(.8)"
+              transform-origin="250 250"
+            ></path>
+            <path
+              fill="none"
+              stroke="gray"
+              stroke-width="1"
+              d="M 370 200 L 496 113 L 524 157"
+            />
+          </g>
+        </svg>
+      </li>
+      <li>
+        <svg viewBox="0 0 500 500" class="three">
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color: #ffeb3b" />
+              <stop offset="100%" style="stop-color: #ffc107" />
+            </linearGradient>
+            <linearGradient
+              id="customGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop offset="0%" style="stop-color: #1976d2" />
+              <stop offset="100%" style="stop-color: #0f3c6d" />
+            </linearGradient>
+          </defs>
+          <g id="sector3" class="slice slice-1">
+            <path
+              fill="url(#goldGradient)"
+              stroke="white"
+              stroke-width="1"
+              class="sector"
+              d="M250,250 l250,0 A250,250 0 0,0 355.65456543517485 , 37.423053240837504 z"
+            ></path>
+            <path
+              fill="url(#customGradient)"
+              d="M250,250 l250,0 A250,250 0 0,0 355.65456543517485 , 37.423053240837504 z"
+              transform="scale(.5)"
+              transform-origin="250 250"
+            ></path>
+            <path
+              fill="none"
+              stroke="gray"
+              stroke-width="1"
+              d="M 250 250 L 457 134 L 504 47"
+            />
+          </g>
+        </svg>
+      </li>
+      <li>
+        <svg viewBox="0 0 500 500" class="four">
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color: #ffeb3b" />
+              <stop offset="100%" style="stop-color: #ffc107" />
+            </linearGradient>
+            <linearGradient
+              id="customGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop offset="0%" style="stop-color: #1976d2" />
+              <stop offset="100%" style="stop-color: #0f3c6d" />
+            </linearGradient>
+          </defs>
+          <g id="sector3" class="slice slice-1">
+            <path
+              fill="url(#goldGradient)"
+              stroke="white"
+              stroke-width="1"
+              class="sector"
+              d="M250,250 l250,0 A250,250 0 0,0 355.65456543517485 , 37.423053240837504 z"
+            ></path>
+            <path
+              fill="url(#customGradient)"
+              d="M250,250 l250,0 A250,250 0 0,0 355.65456543517485 , 37.423053240837504 z"
+              transform="scale(.5)"
+              transform-origin="250 250"
+            ></path>
+            <path
+              fill="none"
+              stroke="gray"
+              stroke-width="1"
+              d="M 351 183 L 477 103 L 660 99"
+            />
+          </g>
+        </svg>
+      </li>
+      <li>
+        <svg viewBox="0 0 500 500" class="five">
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color: #ffeb3b" />
+              <stop offset="100%" style="stop-color: #ffc107" />
+            </linearGradient>
+            <linearGradient
+              id="customGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop offset="0%" style="stop-color: #1976d2" />
+              <stop offset="100%" style="stop-color: #0f3c6d" />
+            </linearGradient>
+          </defs>
+          <g id="sector3" class="slice slice-1">
+            <path
+              fill="url(#goldGradient)"
+              stroke="white"
+              stroke-width="1"
+              class="sector"
+              d="M250,250 l250,0 A250,250 0 0,0 491.4814565722671, 185.29523872436982 z"
+            ></path>
+            <path
+              fill="url(#customGradient)"
+              d="M250,250 l250,0 A250,250 0 0,0 491.4814565722671, 185.29523872436982 z"
+              transform="scale(.47)"
+              transform-origin="250 250"
+            ></path>
+            <path
+              fill="none"
+              stroke="gray"
+              stroke-width="1"
+              d="M 351 237 L 499 218"
+            />
+          </g>
+        </svg>
+      </li>
+      <li>
+        <svg viewBox="0 0 500 500" class="six">
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color: #ffeb3b" />
+              <stop offset="100%" style="stop-color: #ffc107" />
+            </linearGradient>
+            <linearGradient
+              id="customGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop offset="0%" style="stop-color: #1976d2" />
+              <stop offset="100%" style="stop-color: #0f3c6d" />
+            </linearGradient>
+          </defs>
+          <g id="sector3" class="slice slice-1">
+            <path
+              fill="url(#goldGradient)"
+              stroke="white"
+              stroke-width="1"
+              class="sector"
+              d="M250,250 l250,0 A250,250 0 0,0 491.4814565722671, 185.29523872436982  z"
+            ></path>
+            <path
+              fill="url(#customGradient)"
+              d="M250,250 l250,0 A250,250 0 0,0 491.4814565722671, 185.29523872436982  z"
+              transform="scale(.8)"
+              transform-origin="250 250"
+            ></path>
+            <path
+              fill="none"
+              stroke="gray"
+              stroke-width="1"
+              d="M 347 237 L 499 220"
+            />
+          </g>
+        </svg>
+      </li>
+      <li>
+        <svg viewBox="0 0 500 500" class="seven">
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color: #ffeb3b" />
+              <stop offset="100%" style="stop-color: #ffc107" />
+            </linearGradient>
+            <linearGradient
+              id="customGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop offset="0%" style="stop-color: #1976d2" />
+              <stop offset="100%" style="stop-color: #0f3c6d" />
+            </linearGradient>
+          </defs>
+          <g id="sector3" class="slice slice-1">
+            <path
+              fill="url(#goldGradient)"
+              stroke="white"
+              stroke-width="1"
+              class="sector"
+              d="M250,250 l250,0 A250,250 0 0,0 449.6588775118232, 99.54624421198793 z"
+            ></path>
+            <path
+              fill="url(#customGradient)"
+              d="M250,250 l250,0 A250,250 0 0,0 449.6588775118232, 99.54624421198793 z"
+              transform="scale(.3)"
+              transform-origin="250 250"
+            ></path>
+            <path
+              fill="none"
+              stroke="gray"
+              stroke-width="1"
+              d="M 321 227 L 499 199 L 499 82"
+            />
+          </g>
+        </svg>
+      </li>
+      <li>
+        <svg viewBox="0 0 500 500" class="eight">
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color: #ffeb3b" />
+              <stop offset="100%" style="stop-color: #ffc107" />
+            </linearGradient>
+            <linearGradient
+              id="customGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop offset="0%" style="stop-color: #1976d2" />
+              <stop offset="100%" style="stop-color: #0f3c6d" />
+            </linearGradient>
+          </defs>
+          <g id="sector3" class="slice slice-1">
+            <path
+              fill="url(#goldGradient)"
+              stroke="white"
+              stroke-width="1"
+              class="sector"
+              d="M250,250 l250,0 A250,250 0 0,0 393.39410908776154 ,45.21198892775206 z"
+            ></path>
+            <path
+              fill="url(#customGradient)"
+              d="M250,250 l250,0 A250,250 0 0,0 393.39410908776154 ,45.21198892775206 z"
+              transform="scale(.68)"
+              transform-origin="250 250"
+            ></path>
+            <path
+              fill="none"
+              stroke="gray"
+              stroke-width="1"
+              d="M 321 227 L 476 147 L 500 87"
+            />
+          </g>
+        </svg>
+      </li>
+    </ul>
+  </body>
+</html>
